@@ -1,4 +1,4 @@
-# Deeplearning4j Seed
+# Spring Angular Seed
 A small starter app to get a Spring back-end connected to an AngularJS front-end.
 
 ## Setup
