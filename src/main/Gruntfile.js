@@ -40,6 +40,10 @@ module.exports = function (grunt) {
           livereload: '<%= connect.options.livereload %>'
         }
       },
+			less: {
+				files: ['<%= yeoman.app %>/styles/less/**/*.less'],
+				tasks: ['less']
+			},
       html: {
         files: ['<%= yeoman.app %>/**/*.html'],
 				options: {
@@ -116,6 +120,18 @@ module.exports = function (grunt) {
         }
       }
     },
+
+    // Compile the style sheet
+		less: {
+		  development: {
+		    options: {
+		      paths: ["less/*"]
+		    },
+		    files: {
+		      "<%= yeoman.app %>/styles/main.css": "<%= yeoman.app %>/styles/less/main.less"
+		    }
+		  }
+		},
 
     // Make sure code styles are up to par and there are no obvious mistakes
     jshint: {
@@ -401,6 +417,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'wiredep',
+      'less',
       'concurrent:server',
       'autoprefixer:server',
       'connect:livereload',
@@ -425,6 +442,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'wiredep',
+    'less',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
